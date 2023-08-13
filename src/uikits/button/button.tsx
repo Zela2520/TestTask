@@ -6,7 +6,7 @@ interface ButtonProps {
     className: string;
     containerClassName?: string;
     content?: string;
-    someStyles?: string;
+    styles?: Record<string, unknown>;
 }
 
 const StyledButton = styled.button`

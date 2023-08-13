@@ -1,0 +1,34 @@
+.header__nav__list {
+    margin: 0px;
+    padding: 0px;
+    counter-reset: my-counter;
+    margin-right: 15px;
+    list-style: none; 
+}
+
+.nav__list__item {
+    position: relative;
+}
+  
+.nav__list__item::before {
+    content: "";
+    display: block;
+    border-bottom: 1px solid transparent;
+    position: absolute;
+    height: 2px;
+    top: 5;
+    bottom: 0;
+    left: 0%;
+    width: 0;
+    transition: width 0.5s ease-in-out, border-bottom 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+.nav__list__item:hover::before {
+    color: var(--primary);
+    border-color: var(--primary);
+    width: 100%;
+}
+
+.nav__list__item:not(:last-child) {
+    margin-right: 15px;
+}

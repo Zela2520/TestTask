@@ -1,6 +1,6 @@
 .main {
     margin: 0px;
-    padding: 0px 15px;
+    padding: 10px 100px !important;
 }
 
 .left_bar {
@@ -29,4 +29,30 @@
 
 .right_bar {
     flex-basis: 10%;
+}
+
+.tasks {
+    padding: 20px 20px 20px 0px !important;
+    gap: 15px;
+}
+
+.main__addbtn {
+    margin: 0px;
+    padding: 0px;
+    margin-bottom: 20px !important;
+}
+
+.task__control {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: start;
+    width: 70%;
+    &__button {
+        margin-right: 20px;
+    }
+    &__input {
+        width: 50%;
+    }
+
 }

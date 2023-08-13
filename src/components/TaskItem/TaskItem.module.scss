@@ -1,0 +1,37 @@
+.tasks__item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    justify-content: space-between;
+  
+    .MuiCheckbox-root {
+      margin-right: 30px;
+    }
+  
+    .MuiButton-root {
+      background-color: #f44336;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #d32f2f;
+      }
+    }
+
+    &__checkbox {
+        max-width: 20%;
+        margin-right: 30px !important;
+    }
+
+    &__title {
+        max-width: 60%;
+    }
+}
+
+.position__relative {
+  position: relative;
+}
+  

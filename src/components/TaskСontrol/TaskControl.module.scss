@@ -1,0 +1,13 @@
+.task__control {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: start;
+    width: 70%;
+    &__button {
+        margin-right: 20px;
+    }
+    &__input {
+        width: 50%;
+    }
+}

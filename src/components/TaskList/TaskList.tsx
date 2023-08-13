@@ -8,20 +8,13 @@ import {
 } from '../../api/task';
 import { ITask } from '@/types/task';
 import TaskItem from '../TaskItem/TaskItem';
+import TaskControl from '../TaskСontrol/TaskControl';
 
-const task: ITask = {
-    userId: 6,
-    id: 101,
-    title: `Do it, just do it! Don’t let your dreams be dreams. Yesterday you said tomorrow.
-    So just do it! Make your dreams come true. Just do it. Some people dream of success,
-    while you’re going to wake up and work hard at it. Nothing is impossible…
-    You should get to the point where anyone else would quit and you’re not going to stop there.`,
-    completed: false,
-};
 interface Props {}
 
 const TaskList: React.FC<Props> = () => {
     const [tasks, setTasks] = useState<ITask[]>([]);
+
     const getTasks = async () => {
         const data = await axiosGetTask();
         setTasks(data);
@@ -35,7 +28,7 @@ const TaskList: React.FC<Props> = () => {
         try {
             const data = await axiosPostTask(task);
             setTasks((prev) => {
-                return [...prev, data];
+                return [data, ...prev];
             });
             console.log('data', data);
         } catch (error) {
@@ -56,8 +49,8 @@ const TaskList: React.FC<Props> = () => {
 
     const updateTask = useCallback(async (task: ITask) => {
         try {
-            const data = await axiosPutTask(task);
-            console.log('data put', data);
+            // if (!task.id) return;
+            await axiosPutTask(task);
 
             setTasks((prev) => {
                 const index = prev.findIndex((elem) => elem.id === task.id);
@@ -69,35 +62,27 @@ const TaskList: React.FC<Props> = () => {
                 return prev;
             });
         } catch (error) {
+            console.log('ошибка при обновлении данных');
             console.log(error); // компонент ошибка, notification, popup ошибки
         }
     }, []);
 
-    console.log('tasks', tasks);
-
     return (
         <main className={`style-reset flex col ${styles.main}`}>
-            <button
-                onClick={() => {
-                    addTask(task);
-                }}
-            >
-                Add task
-            </button>
-            {tasks?.map((task: ITask) => {
-                return (
-                    <TaskItem
-                        key={task.id}
-                        task={task}
-                        updateTask={updateTask}
-                        deleteTask={deleteTask}
-                    />
-                );
-            })}
-
-            <section
-                className={`flex container col align-items-center ${styles.left_bar}`}
-            ></section>
+            <h1>Task List</h1>
+            <TaskControl addTask={addTask} />
+            <div className={`style-reset flex col ${styles.tasks}`}>
+                {tasks?.map((task: ITask) => {
+                    return (
+                        <TaskItem
+                            key={task.id}
+                            task={task}
+                            updateTask={updateTask}
+                            deleteTask={deleteTask}
+                        />
+                    );
+                })}
+            </div>
         </main>
     );
 };
