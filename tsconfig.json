@@ -4,17 +4,12 @@
       "baseUrl": ".",
       "paths": {
         "@/*": ["src/*"],
-        "@utils/*":  ["src/utils/*"],
         "@components/*":  ["src/components/*"],
-        "@config/*":  ["src/config/*"],
         "@views/*":  ["src/views/*"],
         "@actions/*":  ["src/actions/*"],
         "@assets/*":  ["src/assets/*"],
-        "@router/*":  ["src/router/*"],
-        "@stores/*":  ["src/stores/*"],
         "@styles/*":  ["src/styles/*"],
         "@uikits/*":  ["src/uikit/*"],
-        "@sound/*":  ["src/sound/*"]
       },
       "moduleResolution": "node",
       "strict": true,
