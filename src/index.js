@@ -6,7 +6,7 @@ import './index.scss';
 function App() {
     return (
         <div className="app flex col">
-            <TaskList mainContent="MainContent" />
+            <TaskList />
         </div>
     );
 }

@@ -7,19 +7,20 @@ import {
     axiosPutTask,
 } from '../../api/task';
 import { ITask } from '@/types/task';
+import TaskItem from '../TaskItem/TaskItem';
 
 const task: ITask = {
-    "userId": 6,
-    "id": 101,
-    "title": `Do it, just do it! Don’t let your dreams be dreams. Yesterday you said tomorrow.
+    userId: 6,
+    id: 101,
+    title: `Do it, just do it! Don’t let your dreams be dreams. Yesterday you said tomorrow.
     So just do it! Make your dreams come true. Just do it. Some people dream of success,
     while you’re going to wake up and work hard at it. Nothing is impossible…
     You should get to the point where anyone else would quit and you’re not going to stop there.`,
-    "completed": false
+    completed: false,
 };
 interface Props {}
 
-const Main: React.FC<Props> = () => {
+const TaskList: React.FC<Props> = () => {
     const [tasks, setTasks] = useState<ITask[]>([]);
     const getTasks = async () => {
         const data = await axiosGetTask();
@@ -49,7 +50,7 @@ const Main: React.FC<Props> = () => {
                 return prev.filter((item) => item.id !== id);
             });
         } catch (error) {
-            console.log(error);
+            console.log(error); // компонент ошибка, notification, popup ошибки
         }
     };
 
@@ -83,29 +84,17 @@ const Main: React.FC<Props> = () => {
             >
                 Add task
             </button>
-            {
-                tasks?.map((task: ITask) => {
-                    return (
-                        <div key={task.id} className='flex'>
-                            <input type="checkbox" value={`${task.completed}`} onChange={() => {
-                                updateTask(
-                                    {
-                                        ...task, 
-                                        completed: !task.completed
-                                    });
-                            }} />
-                            <span>{task.title}</span>
-                            <button
-                                onClick={() => {
-                                    deleteTask(task.id);
-                                }}
-                            >
-                                Delete
-                            </button>
-                        </div>
-                    )
-                })
-            }
+            {tasks?.map((task: ITask) => {
+                return (
+                    <TaskItem
+                        key={task.id}
+                        task={task}
+                        updateTask={updateTask}
+                        deleteTask={deleteTask}
+                    />
+                );
+            })}
+
             <section
                 className={`flex container col align-items-center ${styles.left_bar}`}
             ></section>
@@ -113,4 +102,4 @@ const Main: React.FC<Props> = () => {
     );
 };
 
-export default Main;
+export default TaskList;
