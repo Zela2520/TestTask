@@ -9,11 +9,23 @@ import {
 import { ITask } from '@/types/task';
 import TaskItem from '../TaskItem/TaskItem';
 import TaskControl from '../TaskСontrol/TaskControl';
+import TodoPagination from '../Pagination/Pagination';
 
 interface Props {}
 
 const TaskList: React.FC<Props> = () => {
     const [tasks, setTasks] = useState<ITask[]>([]);
+    const [startIndex, setStartIndex] = useState(0);
+    const [endIndex, setEndIndex] = useState(9);
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const handlePageChange = (page: number) => {
+        const newStartIndex = (page - 1) * 10;
+        const newEndIndex = newStartIndex + 9;
+        setStartIndex(newStartIndex);
+        setEndIndex(newEndIndex);
+        setCurrentPage(page);
+    };
 
     const getTasks = async () => {
         const data = await axiosGetTask();
@@ -71,7 +83,7 @@ const TaskList: React.FC<Props> = () => {
             <h1>Task List</h1>
             <TaskControl addTask={addTask} />
             <div className={`style-reset flex col ${styles.tasks}`}>
-                {tasks?.map((task: ITask) => {
+                {tasks?.slice(startIndex, endIndex + 1).map((task: ITask) => {
                     return (
                         <TaskItem
                             key={task.id}
@@ -82,6 +94,12 @@ const TaskList: React.FC<Props> = () => {
                     );
                 })}
             </div>
+
+            <TodoPagination
+                totalPages={Math.ceil(tasks.length / 10)}
+                currentPage={currentPage}
+                onPageChange={handlePageChange}
+            />
         </main>
     );
 };
