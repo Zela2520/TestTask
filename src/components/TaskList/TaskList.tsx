@@ -49,8 +49,7 @@ const TaskList: React.FC<Props> = () => {
 
     const updateTask = useCallback(async (task: ITask) => {
         try {
-            // if (!task.id) return;
-            await axiosPutTask(task);
+            await axiosPutTask(task); // ограничение на 200 id-ов.
 
             setTasks((prev) => {
                 const index = prev.findIndex((elem) => elem.id === task.id);
@@ -62,7 +61,7 @@ const TaskList: React.FC<Props> = () => {
                 return prev;
             });
         } catch (error) {
-            console.log('ошибка при обновлении данных');
+            console.log('ошибка сервера при обновлении данных');
             console.log(error); // компонент ошибка, notification, popup ошибки
         }
     }, []);
