@@ -1,0 +1,32 @@
+.main {
+    margin: 0px;
+    padding: 0px 15px;
+}
+
+.left_bar {
+    flex-basis: 10%;
+    max-width: 5%;
+}
+
+.left_bar__list {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+
+.left_bar__list__item {
+    width: 100%;
+}
+
+.left_bar__list__item:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.main_content {
+    flex-basis: 80%;
+    justify-content: space-between;
+}
+
+.right_bar {
+    flex-basis: 10%;
+}
