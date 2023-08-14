@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import styles from './TaskList.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -13,6 +13,7 @@ import TaskItem from '../TaskItem/TaskItem';
 import TaskControl from '../TaskСontrol/TaskControl';
 import TodoPagination from '../Pagination/Pagination';
 import { axiosGetTask } from '../../api/task';
+import List from '../List/List';
 
 interface Props {}
 
@@ -74,23 +75,24 @@ const TaskList: React.FC<Props> = () => {
         [dispatch]
     );
 
+    const renderedTasks = useMemo(() => {
+        return tasks?.slice(startIndex, endIndex + 1).map((task: ITask) => {
+            return (
+                <TaskItem
+                    key={task.id}
+                    task={task}
+                    updateTask={handleUpdateTask}
+                    deleteTask={handleDeleteTask}
+                />
+            );
+        });
+    }, [tasks, startIndex, endIndex, handleUpdateTask, handleDeleteTask]);
+
     return (
         <main className={`style-reset flex col ${styles.main}`}>
             <h1>Task List</h1>
             <TaskControl addTask={handleAddTask} />
-            <div className={`style-reset flex col ${styles.tasks}`}>
-                {tasks?.slice(startIndex, endIndex + 1).map((task: ITask) => {
-                    return (
-                        <TaskItem
-                            key={task.id}
-                            task={task}
-                            updateTask={handleUpdateTask}
-                            deleteTask={handleDeleteTask}
-                        />
-                    );
-                })}
-            </div>
-
+            <List items={renderedTasks} renderItem={(item) => item} />
             <TodoPagination
                 totalPages={Math.ceil(tasks.length / 10)}
                 currentPage={currentPage}

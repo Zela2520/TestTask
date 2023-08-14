@@ -44,6 +44,7 @@ const TaskItem: React.FC<Props> = ({ task, updateTask, deleteTask }) => {
             await deleteTask(task.id);
             setIsLoading(false);
         } else {
+            // если мы создаем задачу, то id нашей задачи не сохраняется сервером, поэтому при удалении созданной нами задачи попадем сюда
             console.log('задача не может быть удалена. Отсутвует id'); // TODO: компонент ошибка, форму
         }
     };
