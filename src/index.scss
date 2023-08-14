@@ -222,6 +222,7 @@ ul {
 }
 
 body {
+    height: 100vh;
     margin: 0px;
     padding: 0px;
     transition: all 0.3s ease-in-out;
@@ -316,6 +317,10 @@ h1, h2, h3, h4, hr, section, figure {
 
 .img-cover {
     object-fit: cover;
+}
+
+#root {
+    height: 100%;
 }
 
 .app {
