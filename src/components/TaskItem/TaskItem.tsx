@@ -7,7 +7,7 @@ import { styled } from '@mui/material/styles';
 import styles from './TaskItem.module.scss';
 
 const StyledTaskItem = styled('div')({
-    width: '100%',
+    width: '90%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',

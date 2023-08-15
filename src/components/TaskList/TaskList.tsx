@@ -89,8 +89,10 @@ const TaskList: React.FC<Props> = () => {
     }, [tasks, startIndex, endIndex, handleUpdateTask, handleDeleteTask]);
 
     return (
-        <main className={`style-reset flex col ${styles.main}`}>
-            <h1>Task List</h1>
+        <main
+            className={`style-reset flex col align-items-center ${styles.main}`}
+        >
+            <h1 className={`style-reset ${styles.list__title}`}>Task List</h1>
             <TaskControl addTask={handleAddTask} />
             <List items={renderedTasks} renderItem={(item) => item} />
             <TodoPagination
