@@ -44,3 +44,8 @@ export async function axiosPutTask(task: ITask): Promise<ITask> {
 
     return data.data;
 }
+
+export async function getBooks(): Promise<ITask> {
+    const data = await fetch('https://www.anapioficeandfire.com/api/books');
+    return await data.json();
+}

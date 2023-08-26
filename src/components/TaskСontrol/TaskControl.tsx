@@ -29,6 +29,7 @@ const TaskInput = styled.input`
 
 interface Props {
     addTask: (task: ITask) => void;
+    // handleAddInput: (input: string) => void;
 }
 
 const TaskControl: React.FC<Props> = ({ addTask }) => {
