@@ -1,5 +1,5 @@
 {
-  "name": "portfolio",
+  "name": "tasks",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,7 +17,7 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://zela2520.github.io/tasks.github.io/",
+  "homepage": "https://zela2520.github.io/tasks/",
   "type": "module",
   "scripts": {
     "start": "webpack serve --open --mode development",

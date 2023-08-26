@@ -18,7 +18,7 @@ const production = process.env.NODE_ENV === 'production';
 module.exports = {
     entry: { myAppName: path.resolve(__dirname, './src/index.js') },
     output: {
-        path: path.resolve(__dirname, './dist'),
+        path: path.resolve(__dirname, './build'),
         filename: production ? '[name].[contenthash].js' : '[name].js',
         publicPath: '/',
     },
@@ -94,7 +94,7 @@ module.exports = {
         new FileManagerPlugin({
             events: {
                 onStart: {
-                    delete: ['dist'],
+                    delete: ['build'],
                 },
             },
         }),
@@ -105,7 +105,7 @@ module.exports = {
             patterns: [
                 {
                     from: path.resolve(__dirname, 'src/index.scss'),
-                    to: path.resolve(__dirname, 'dist/index.scss'),
+                    to: path.resolve(__dirname, 'build/index.scss'),
                 },
             ],
         }),
